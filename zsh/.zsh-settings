@@ -1,0 +1,17 @@
+### <ALIASES>
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+### </ALIASES>
+
+### <PROMPT>
+setopt prompt_subst
+NEWLINE=$'\n'
+
+autoload -Uz vcs_info # enable vcs_info
+precmd () { vcs_info } # always load before displaying the prompt
+zstyle ':vcs_info:*' formats ' %s(%F{red}%b%f)' # git(main)
+
+PS1='%n@%m %F{red}%/%f $vcs_info_msg_0_ $NEWLINE$ ' # david@macbook /tmp/repo (main) $ 
+# </PROMPT>
+
