@@ -1,0 +1,91 @@
+# Enable vi keybindings in bash
+set editing-mode vi
+set show-mode-in-prompt on
+# Breakdown of vi-ins-mode-string:
+# Recurring characters:
+# \1 - Start zero-width character (\001)
+# \2 - End zero-width character (\002)
+# \e - By itself simply means "an escape character"
+# \e[ - Signal CSI (Control Sequence Introducer)
+# \e] - Signal OSC (Operating System Command)
+# Note that the multiple \1s and \2s aren't necessary and are only specified
+# for easier understanding of the lines
+# Actual breakdown:
+# \1\e[38;5;015m\2 - Set foreground color to 8-bit color 015 (white)
+# \1\e[0m\2 - Reset color settings
+# \1\e[38;5;064m\2 - Set foreground color to 24-bit color #bffe5d
+# (R=191,G=254,B=93) - Green color
+# (ins) - Print "(ins)", literal text
+# \1\e[0m\2 - Reset color settings
+# \1\e[5 q\2 - Change cursor shape to blinking bar
+# \1\e]1337;SetColors=curbg=7300f2\e\\\2 \
+# This is a proprietary iTerm2 OSC ,Let's break it down:
+# OSC 1337 is equal to xterm's OSC 50
+# ;SetColors=[key]=[value]
+# Our key is the cursor background (If you ask me it should be called the
+# foreground but who am I to say)
+# Our value is an RRGGBB string
+# This needs to end with a literal backslash and therefore we specify \e\\ at the end before finally closing with a \2
+set vi-ins-mode-string \1\e[38;5;015m\2uu\1\e[0m\2\1\e[38;2;191;254;33m\2(ins)‚u\1\e[0m\2\1\e[5 q\2\1\e]1337;SetColors=curbg=bffe21\e\\\2
+set vi-cmd-mode-string \1\e[38;5;015m\2uu\1\e[0m\2\1\e[38;2;191;121;33m\2(cmd)u\1\e[0m\2\1\e[2 q\2\1\e]1337;SetColors=curbg=bf7921\e\\\2
+
+# which default set of key bindings is used
+set editing-mode vi
+
+#  filename matching and completion in a case-insensitive fashion
+set completion-ignore-case on
+
+# treat hyphens (`-') and underscores (`_') as equivalent when performing case-insensitive filename matching
+set completion-map-case on
+
+# common prefixes longer than this value are replaced with an ellipsis when displaying possible completions. 
+set completion-prefix-display-length 2
+
+#  words which have more than one possible completion cause the matches to be listed immediately
+set show-all-if-ambiguous on
+
+# words which have more than one possible completion without any possible partial completion
+# cause the matches to be listed immediately instead of ringing the bell
+set show-all-if-unmodified on
+
+# a character denoting a file's type is appended to the filename when listing possible completions
+set visible-stats on
+
+# match files whose names begin with a `.' (hidden files) 
+set match-hidden-files on
+
+# Key bindings
+
+# Up arrow
+"\e[A":history-search-backward
+# Down arrow
+"\e[B":history-search-forward
+# Do not re-assign the left/right arrows, use them for line-editting
+# Right arrow
+# "\e[C":menu-complete
+# Left arrow
+# "\e[D": 
+
+$if Bash
+#
+# Function keys
+#
+# <F12>
+"\e[24~": "!$\r"
+# <Shift-F12>
+"\e[24;2~": "!!\r\e0"
+
+set keymap vi-insert
+# <PageUp>
+"\e[5~": "\ek0"
+# <PageDown>
+"\e[6~": "\ej$"
+
+set keymap vi-command
+# <PageUp>
+"\e[5~": "k0"
+# <PageDown>
+"\e[6~": "j$"
+
+
+$endif
