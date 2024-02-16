@@ -1,5 +1,4 @@
 # Enable vi keybindings in bash
-set editing-mode vi
 set show-mode-in-prompt on
 # Breakdown of vi-ins-mode-string:
 # Recurring characters:
@@ -28,6 +27,15 @@ set show-mode-in-prompt on
 # This needs to end with a literal backslash and therefore we specify \e\\ at the end before finally closing with a \2
 set vi-ins-mode-string \1\e[38;5;015m\2uu\1\e[0m\2\1\e[38;2;191;254;33m\2(ins)‚u\1\e[0m\2\1\e[5 q\2\1\e]1337;SetColors=curbg=bffe21\e\\\2
 set vi-cmd-mode-string \1\e[38;5;015m\2uu\1\e[0m\2\1\e[38;2;191;121;33m\2(cmd)u\1\e[0m\2\1\e[2 q\2\1\e]1337;SetColors=curbg=bf7921\e\\\2
+
+# do not bell on tab-completion
+set bell-style none
+
+# If set to On, when listing completions,  readline  displays  the
+# common prefix of the set of possible completions using a differ‐
+# ent color.  The color definitions are taken from  the  value  of
+# the LS_COLORS environment variable.
+set colored-completion-prefix On
 
 # which default set of key bindings is used
 set editing-mode vi
