@@ -1,0 +1,47 @@
+{
+  "include": [
+    "test"
+  ],
+ 
+  "extraPaths": [
+    "test/l2vpn/modules",
+    "../xrut3/modules",
+    "ipv4/bgp/test/modules",
+    "../../../../auto/firex/sw/xrut-python/lib/python3.9"
+  ],
+ 
+  "typeCheckingMode" : "informational",
+ 
+  "reportOptionalMemberAccess" : false,
+  "reportOptionalSubscript" : false,
+  "reportOptionalMemberAccess" : false,
+  "reportOptionalCall" : false,
+  "reportOptionalOperand" : false,
+  "reportOptionalIterable" : false,
+  "reportGeneralTypeIssues" : true,
+  "reportMissingImports": true,
+  "reportMissingTypeStubs": false,
+ 
+  "autoFormatStrings" : true,
+  "completeFunctionParens" : true,
+  "autoImportCompletions" : true,
+  "inlayHints": {
+      "variableTypes" : true,
+      "callArgumentNames" : true,
+      "pytestParameters" : true,
+      "functionReturnType" : true
+  },
+ 
+  "pythonVersion": "3.9",
+  "pythonPlatform": "Linux",
+ 
+  "executionEnvironments": [
+    {
+        "root": "test"
+    },
+    {
+        "root": "ipv4/bgp",
+        "pythonVersion": "2.7"
+    }
+  ]
+}
