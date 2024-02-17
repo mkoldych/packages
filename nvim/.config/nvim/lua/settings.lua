@@ -10,8 +10,8 @@ o.rulerformat = '%l:%c%V'
 
 --o.t_Co = '256'
 --o.term = 'xterm-256color'
-o.backupdir = '~/.vimbackup'
-o.directory = '/tmpi'
+o.backupdir = HOME .. '/vim/backup'
+o.directory = HOME .. '/vim/tmp'
 o.switchbuf = 'vsplit'
 
 o.tabstop = 4    --Tells vim the number of columns a tab should be counted as
@@ -27,6 +27,7 @@ o.history = 50 --Keep 50 lines of history.
 o.wildmode = 'longest,list,full' --Similar to bash autocomplete.
 o.wildmenu = true
 o.cindent = true
+o.autoindent = true
 o.background = 'dark'
 
 o.shiftwidth = 4 --Tells vim the number of columns a shiftwidth should be counted as
@@ -45,8 +46,8 @@ o.cursorline = true   --See that beautiful line currently highlighting where you
 o.mouse = 'a'
 --o.ttymouse = 'xterm2'
 
-o.errorfile = 'ljam.err'
-o.makeprg = 'cv'
+--o.errorfile = 'ljam.err'
+--o.makeprg = 'cv'
 
 --[[ START AUTOCOMPLETE ]]--
 o.completeopt = 'menu,menuone,longest'
