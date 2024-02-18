@@ -40,8 +40,8 @@ o.mouse = 'a'
 --o.makeprg = 'cv'
 
 --[[ START AUTOCOMPLETE ]]--
---o.completeopt = 'menu,menuone,longest'
-o.completeopt = {'menu', 'menuone', 'noselect'}
+o.completeopt = 'menu,menuone,longest'
+--o.completeopt = {'menu', 'menuone', 'noselect'}
 o.complete = '.,w,b,u,t'
 vim.cmd([[
 set shortmess+=c " do not display redundant info in the status bar when menu pops up
