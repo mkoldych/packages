@@ -11,11 +11,22 @@ function ccls_root_dir (cur_file)
 end
 
 lsp.ccls_start = function ()
+    local cur_file = vim.api.nvim_buf_get_name(0)
+    local ok, root_dir = pcall(ccls_root_dir, cur_file)
+    if not ok then
+        print('no .ccls file, error: ' .. root_dir)
+        return
+    elseif root_dir == nil then
+        print('no .ccls file, from ' .. cur_file)
+        return
+    else
+        print('found .ccls file at ' .. root_dir)
+    end
     vim.lsp.start({
         name = 'ccls',
         cmd = {'/usr/bin/ccls'},
         autostart = false,
-        root_dir = ccls_root_dir(vim.api.nvim_buf_get_name(0)),
+        root_dir = root_dir,
         init_options = {
             index = {
                 threads = 0;
