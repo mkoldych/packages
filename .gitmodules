@@ -1,3 +1,0 @@
-[submodule "nvim/.config/nvim/plugin/pack/tpope/start/dispatch"]
-	path = nvim/.config/nvim/plugin/pack/tpope/start/dispatch
-	url = https://tpope.io/vim/dispatch.git
