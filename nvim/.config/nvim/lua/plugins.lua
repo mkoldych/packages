@@ -22,7 +22,7 @@ local plugins = {
     },
     config = function()
       require("telescope").load_extension("live_grep_args")
-      --require("telescope").load_extension("fzf")
+      --require("telescope").load_extension("fzf_native")
     end
   },
   {
@@ -32,7 +32,8 @@ local plugins = {
         ts_update()
     end,
   },
-  { "nvim-tree/nvim-web-devicons" }
+  { "nvim-tree/nvim-web-devicons" },
+  { "preservim/tagbar" },
 }
 
 require("lazy").setup(plugins)
