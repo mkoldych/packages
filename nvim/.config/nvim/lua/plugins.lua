@@ -34,6 +34,9 @@ local plugins = {
   },
   { "nvim-tree/nvim-web-devicons" },
   { "preservim/tagbar" },
+
+  { "kyazdani42/nvim-web-devicons" },
+  { "kyazdani42/nvim-tree.lua" },
 }
 
 require("lazy").setup(plugins)
