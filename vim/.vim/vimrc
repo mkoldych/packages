@@ -25,3 +25,4 @@ set hlsearch
 set mouse=a
 colorscheme elflord
 
+highlight Visual cterm=reverse ctermbg=NONE

@@ -1,0 +1,23 @@
+#!/bin/bash
+
+IS_RUNNING(){
+    pidof -o %PPID -x -- "$0" >& /dev/null
+}
+
+IS_RUNNING && exit
+
+PIPE_DIR="/nobackup/$USER/hostpipe"
+PIPE_IN="$PIPE_DIR/exec_in"
+PIPE_OUT="$PIPE_DIR/exec_out"
+
+if [ ! -d "$PIPE_DIR" ]; then
+    mkdir "$PIPE_DIR"
+fi
+if [ ! -e "$PIPE_IN" ]; then
+    mkfifo "$PIPE_IN"
+fi
+if [ ! -e "$PIPE_OUT" ]; then
+    mkfifo "$PIPE_OUT"
+fi
+
+while true; do eval "$(cat "$PIPE_IN")" &> "$PIPE_OUT"; done

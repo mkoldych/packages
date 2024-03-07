@@ -1,0 +1,9 @@
+#!/bin/bash
+
+#-u $(id -u):$(id -g)
+docker run -it --rm \
+    --pid="host" \
+  -v /localdisk:/localdisk \
+  -v /home/mkoldych/d:/root/d \
+  -v /home/mkoldych/stow:/root/stow \
+  d
