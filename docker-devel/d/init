@@ -1,0 +1,5 @@
+#!/bin/bash
+
+stow -t ../../ readline
+stow -t ../../ vim
+stow -t ../../ nvim

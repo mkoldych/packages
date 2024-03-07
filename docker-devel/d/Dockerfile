@@ -1,9 +1,9 @@
 FROM ubuntu
-VOLUME /hostpipe
+#VOLUME /hostpipe
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG TZ=America/Toronto
-ENV HOME /root
+ENV HOME /home/mkoldych
 ENV PATH "$HOME/bin:$PATH"
 
 # Install basic stuff
@@ -51,8 +51,6 @@ RUN npm i -g pyright
 RUN npm install tree-sitter tree-sitter-cli
 
 RUN nvim +PlugInstall +qall
-
-WORKDIR $HOME/stow/packages
 
 WORKDIR /localdisk
 
