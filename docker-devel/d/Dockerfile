@@ -52,6 +52,4 @@ RUN npm install tree-sitter tree-sitter-cli
 
 RUN nvim +PlugInstall +qall
 
-WORKDIR /localdisk
-
-CMD ["/bin/bash"]
+#CMD ["/bin/bash"]

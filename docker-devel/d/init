@@ -1,5 +1,9 @@
 #!/bin/bash
 
+cd
+mkdir -p .config/nvim
+mkdir -p .vim
+cd stow/packages
 stow -t ../../ readline
 stow -t ../../ vim
 stow -t ../../ nvim

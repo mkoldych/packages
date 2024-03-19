@@ -1,10 +1,26 @@
 #!/bin/bash
 
+set -Eeuo pipefail
+set -o xtrace
+
 #    --pid="host" \
 
-docker run -it --rm \
+CONT_NAME="dd"
+
+docker stop ${CONT_NAME} || echo "not running, skipping..."
+docker rm ${CONT_NAME} || echo "not running, skipping..."
+
+docker run -it \
+  --name ${CONT_NAME} \
   -u $(id -u):$(id -g) \
-  -v /localdisk:/localdisk \
-  -v /home/mkoldych/d:/home/mkoldych/d \
-  -v /home/mkoldych/stow:/home/mkoldych/stow \
-  d
+  --mount type=bind,source=/localdisk,target=/localdisk \
+  --mount type=bind,source=/home/mkoldych/d,target=/home/mkoldych/d,readonly \
+  --mount type=bind,source=/home/mkoldych/stow,target=/home/mkoldych/stow,readonly \
+  -d d
+if [ $? -ne 0 ]
+then
+  echo "ERROR: Failed to run docker"
+  exit 1
+fi
+
+docker exec -it ${CONT_NAME} bash
