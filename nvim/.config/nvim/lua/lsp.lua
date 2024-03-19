@@ -49,8 +49,8 @@ end
 
 lsp.setup = function ()
     -- Setup language servers.
-    --local lspconfig = require('lspconfig')
-    --lspconfig.pyright.setup {}
+    local lspconfig = require('lspconfig')
+    lspconfig.pyright.setup {}
 
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('UserLspConfig', {}),

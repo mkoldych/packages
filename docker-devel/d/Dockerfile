@@ -47,8 +47,9 @@ ENV PATH "$HOME/nvim-linux64/bin:$PATH"
 
 # install language servers
 RUN npm install -g vim-language-server
-RUN npm i -g pyright
-RUN npm install tree-sitter tree-sitter-cli
+RUN npm install -g pyright
+RUN npm install -g tree-sitter tree-sitter-cli
+RUN npm install -g node
 
 RUN nvim +PlugInstall +qall
 
