@@ -16,6 +16,9 @@ docker run -it \
   --mount type=bind,source=/localdisk,target=/localdisk \
   --mount type=bind,source=/home/mkoldych/d,target=/home/mkoldych/d,readonly \
   --mount type=bind,source=/home/mkoldych/stow,target=/home/mkoldych/stow,readonly \
+  --mount type=bind,source=/home/mkoldych/.zshrc,target=/home/mkoldych/.zshrc,readonly \
+  --mount type=bind,source=/home/mkoldych/.zshrc.zni,target=/home/mkoldych/.zshrc.zni,readonly \
+  --mount type=bind,source=/home/mkoldych/.zsh-settings,target=/home/mkoldych/.zsh-settings,readonly \
   -d d
 if [ $? -ne 0 ]
 then
@@ -23,4 +26,4 @@ then
   exit 1
 fi
 
-docker exec -it ${CONT_NAME} bash
+docker exec -it ${CONT_NAME} zsh
