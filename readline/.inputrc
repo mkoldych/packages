@@ -38,7 +38,7 @@ set bell-style none
 set colored-completion-prefix On
 
 # which default set of key bindings is used
-set editing-mode vi
+set editing-mode emacs
 
 #  filename matching and completion in a case-insensitive fashion
 set completion-ignore-case on
@@ -74,26 +74,25 @@ set match-hidden-files on
 # Left arrow
 # "\e[D": 
 
-$if Bash
+#$if Bash
 #
 # Function keys
 #
 # <F12>
-"\e[24~": "!$\r"
+#"\e[24~": "!$\r"
 # <Shift-F12>
-"\e[24;2~": "!!\r\e0"
+#"\e[24;2~": "!!\r\e0"
 
-set keymap vi-insert
+#set keymap vi-insert
 # <PageUp>
-"\e[5~": "\ek0"
+#"\e[5~": "\ek0"
 # <PageDown>
-"\e[6~": "\ej$"
+#"\e[6~": "\ej$"
 
-set keymap vi-command
+#set keymap vi-command
 # <PageUp>
-"\e[5~": "k0"
+#"\e[5~": "k0"
 # <PageDown>
-"\e[6~": "j$"
+#"\e[6~": "j$"
 
-
-$endif
+#$endif
