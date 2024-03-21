@@ -1,6 +1,6 @@
 -- disable netrw at the very start of your init.lua
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+--vim.g.loaded_netrw = 1
+--vim.g.loaded_netrwPlugin = 1
 
 -- optionally enable 24-bit colour
 vim.opt.termguicolors = true
@@ -21,7 +21,7 @@ local function my_on_attach(bufnr)
   vim.keymap.set('n', '?',     api.tree.toggle_help,                  opts('Help'))
 end
 
-vim.keymap.set('n', "T", api.tree.open, {})
+vim.keymap.set('n', "T", api.tree.toggle, {})
 
 require("nvim-tree").setup({
   sort = {
