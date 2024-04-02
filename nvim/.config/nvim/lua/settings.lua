@@ -1,4 +1,5 @@
 local o = vim.o
+local g = vim.g
 local wo = vim.wo
 local bo = vim.bo
 
@@ -75,3 +76,5 @@ o.smartcase = true            -- but make it case sensitive if an uppercase is e
 
 o.path = "include," .. o.path -- use "gf" to go to fine under cursor
 
+-- NetRW
+g.netrw_liststyle = 3

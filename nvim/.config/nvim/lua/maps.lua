@@ -29,18 +29,35 @@ vim.cmd([[
 "
 "nnoremap <C-Insert> :tabnew<CR>
 "nnoremap <C-Delete> :tabclose<CR>
-nnoremap th  :tabfirst<CR>
-nnoremap tk  :tabnext<CR>
-nnoremap tj  :tabprev<CR>
-nnoremap tl  :tablast<CR>
-nnoremap tt  :tabedit<Space>
-"nnoremap tn  :tabnext<Space>
-nnoremap tm  :tabm<Space>
-nnoremap td  :tabclose<CR>
-" Alternatively use
-" "nnoremap th :tabnext<CR>
-" "nnoremap tl :tabprev<CR>
+
+"nnoremap <Leader>th  :tabfirst<CR>
+"nnoremap <Leader>tk  :tabnext<CR>
+"nnoremap <Leader>tj  :tabprev<CR>
+"nnoremap <Leader>tl  :tablast<CR>
+"nnoremap <Leader>tt  :tabedit<Space>
+"nnoremap <Leader>tm  :tabm<Space>
+"nnoremap <Leader>td  :tabclose<CR>
+"nnoremap <Leader>tn :tabnew<CR>
+
+nnoremap th :tabfirst<CR>
+nnoremap tk :tabnext<CR>
+nnoremap tj :tabprev<CR>
+nnoremap tl :tablast<CR>
+nnoremap tt :tabedit<Space>
+nnoremap tm :tabm<Space>
+nnoremap td :tabclose<CR>
 nnoremap tn :tabnew<CR>
+
+nnoremap <leader>1 1gt
+nnoremap <leader>2 2gt
+nnoremap <leader>3 3gt
+nnoremap <leader>4 4gt
+nnoremap <leader>5 5gt
+nnoremap <leader>6 6gt
+nnoremap <leader>7 7gt
+nnoremap <leader>8 8gt
+nnoremap <leader>9 9gt
+nnoremap <leader>0 10gt
 ]])
 
 vim.cmd([[

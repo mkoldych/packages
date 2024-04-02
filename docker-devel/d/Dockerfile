@@ -30,6 +30,7 @@ RUN apt-get install -y libssl-dev
 RUN apt-get install -y npm universal-ctags ripgrep pylint flake8
 RUN apt-get install -y silversearcher-ag ack fd-find
 RUN apt-get install -y vim
+RUN apt-get install -y sudo
 
 # Install python modules
 RUN pip3 install -U pynvim

@@ -14,13 +14,13 @@ lsp.ccls_start = function ()
     local cur_file = vim.api.nvim_buf_get_name(0)
     local ok, root_dir = pcall(ccls_root_dir, cur_file)
     if not ok then
-        print('no .ccls file, error: ' .. root_dir)
+        --print('no .ccls file, error: ' .. root_dir)
         return
     elseif root_dir == nil then
-        print('no .ccls file, from ' .. cur_file)
+        --print('no .ccls file, from ' .. cur_file)
         return
     else
-        print('found .ccls file at ' .. root_dir)
+        --print('found .ccls file at ' .. root_dir)
     end
     vim.lsp.start({
         name = 'ccls',

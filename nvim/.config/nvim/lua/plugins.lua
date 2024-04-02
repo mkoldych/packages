@@ -37,7 +37,7 @@ local plugins = {
   },
   { "preservim/tagbar" },
 
-  { "kyazdani42/nvim-tree.lua" },
+  --{ "kyazdani42/nvim-tree.lua" },
 
   -- Colorschemes
   { "folke/tokyonight.nvim" },
@@ -135,7 +135,6 @@ local plugins = {
 
           -- Text object
           map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
-          print('hello')
         end
       }
     end,
