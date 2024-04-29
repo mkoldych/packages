@@ -73,6 +73,7 @@ o.incsearch = true            -- search as characters are entered
 o.hlsearch = true             --highlight keywords being matched from search.
 o.ignorecase = true           -- ignore case in searches by default
 o.smartcase = true            -- but make it case sensitive if an uppercase is entered
+o.tagcase = "match"
 
 o.path = "include," .. o.path -- use "gf" to go to fine under cursor
 

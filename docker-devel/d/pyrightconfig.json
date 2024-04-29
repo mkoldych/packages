@@ -4,10 +4,7 @@
   ],
  
   "extraPaths": [
-    "test/l2vpn/modules",
-    "../xrut3/modules",
     "ipv4/bgp/test/modules",
-    "../../../../auto/firex/sw/xrut-python/lib/python3.9"
   ],
  
   "typeCheckingMode" : "informational",

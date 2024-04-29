@@ -31,6 +31,8 @@ RUN apt-get install -y npm universal-ctags ripgrep pylint flake8
 RUN apt-get install -y silversearcher-ag ack fd-find
 RUN apt-get install -y vim
 RUN apt-get install -y sudo
+RUN apt-get install -y xml2rfc
+RUN apt-get install -y ruby-kramdown-rfc2629
 
 # Install python modules
 RUN pip3 install -U pynvim

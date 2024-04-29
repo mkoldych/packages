@@ -24,7 +24,37 @@ local plugins = {
         { "nvim-telescope/telescope-live-grep-args.nvim" },
     },
     config = function()
-      require("telescope").load_extension("live_grep_args")
+        local telescope = require("telescope")
+        local lga_actions = require("telescope-live-grep-args.actions")
+
+        telescope.setup {
+          defaults = {
+            layout_config = {
+              horizontal = { width = 0.99, height=0.99 }
+              -- other layout configuration here
+            },
+            -- other defaults configuration here
+          },
+          extensions = {
+            live_grep_args = {
+              auto_quoting = true, -- enable/disable auto-quoting
+              -- define mappings, e.g.
+              mappings = { -- extend mappings
+                i = {
+                  ["<C-k>"] = lga_actions.quote_prompt(),
+                  ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+                },
+              },
+              -- ... also accepts theme settings, for example:
+              --theme = "dropdown", -- use dropdown theme
+              -- theme = { }, -- use own theme spec
+              -- layout_config = { mirror=true }, -- mirror preview pane
+
+            }
+          }
+        }
+
+      --require("telescope").load_extension("live_grep_args")
       --require("telescope").load_extension("fzf_native")
     end
   },
@@ -84,7 +114,7 @@ local plugins = {
         sign_priority = 6,
         update_debounce = 100,
         status_formatter = nil, -- Use default
-        max_file_length = 40000, -- Disable if file is longer than this (in lines)
+        max_file_length = 10000, -- Disable if file is longer than this (in lines)
         preview_config = {
           -- Options passed to nvim_open_win
           border = 'single',

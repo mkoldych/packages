@@ -1253,8 +1253,8 @@ function! dispatch#complete(file, ...) abort
     if !a:0
       checktime
     endif
-    "cgetfile ljam.err
-    "copen
+    cgetfile ljam.err
+    copen
   endif
   return ''
 endfunction

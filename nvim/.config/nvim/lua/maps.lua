@@ -68,14 +68,9 @@ nnoremap <leader>n :cn<cr>
 ]])
 
 -- START TAGS MAPPINGS --
-Map("n", "<C-]>", "g<C-]><CR>")
+Map("n", "<C-]>", "g<C-]>")
 Map("n", "t[", ":tselect<Space>")
 Map("n", "t]", ":tselect<CR>")
-vim.cmd([[
-"nnoremap <C-]> g<C-]><CR>
-"nnoremap <C-'> :tselect<Space>
-"nnoremap <C-;> :tselect<CR>
-]])
 -- END TAGS MAPPINGS --
 
 
@@ -112,6 +107,8 @@ local builtin = require('telescope.builtin')
 local telescope = require('telescope')
 local live_grep_args_shortcuts = require("telescope-live-grep-args.shortcuts")
 
+local root_patterns = { ".git", ".clang-format", "pyproject.toml", "setup.py" }
+
 vim.keymap.set('n', '<leader>ff', builtin.resume, {})
 
 vim.keymap.set('n', '<leader>fo', builtin.vim_options, {})
@@ -127,11 +124,25 @@ vim.keymap.set('n', '<leader>fr', builtin.lsp_references, {})
 vim.keymap.set('n', '<leader>ft', builtin.tags, {})
 vim.keymap.set('n', '<leader>fz', builtin.current_buffer_fuzzy_find, {})
 
-vim.keymap.set('n', '<leader>faa', telescope.extensions.live_grep_args.live_grep_args, {})
-vim.keymap.set('n', '<leader>fal', function() return telescope.extensions.live_grep_args.live_grep_args({search_dirs={string.gmatch(vim.fn.expand('%:~:.'), "%w+")()}}) end, {})
+vim.keymap.set('n', '<leader>faa', function()
+    local cur_dir = vim.fs.dirname(vim.fn.expand('%:~:.'))
+    local root_dir = vim.fs.dirname(vim.fs.find(root_patterns, {path = cur_dir, upward = true, type = 'directory'})[1])
+    return telescope.extensions.live_grep_args.live_grep_args({search_dirs={root_dir}})
+end, {})
 
-vim.keymap.set('n', '<leader>fg', function() return live_grep_args_shortcuts.grep_word_under_cursor({postfix=' -g ' .. string.gmatch(vim.fn.expand('%:~:.'), "%w+")() .. '/** -g !.ccls-cache -g !.git -g !.bzltojam -g !build_logs -g !ljam.log -g !cscope.files -g !tags '}) end, {})
-vim.keymap.set('n', '<leader>fs', function() return builtin.grep_string({search_dirs={string.gmatch(vim.fn.expand('%:~:.'), "%w+")()}}) end, {})
+vim.keymap.set('n', '<leader>fg', function()
+    local cur_dir = vim.fs.dirname(vim.fn.expand('%:~:.'))
+    local root_dir = vim.fs.dirname(vim.fs.find(root_patterns, {path = cur_dir, upward = true, type = 'directory'})[1])
+    --postfix=' -g ' .. root_dir .. '/** -g !.ccls-cache -g !.git -g !cscope.files -g !tags '
+    --prefix='' .. root_dir .. '/**'
+    return live_grep_args_shortcuts.grep_word_under_cursor({postfix=' ' .. root_dir})
+end, {})
+vim.keymap.set('n', '<leader>fs', function()
+    local cur_dir = vim.fs.dirname(vim.fn.expand('%:~:.'))
+    local root_dir = vim.fs.dirname(vim.fs.find(root_patterns, {path = cur_dir, upward = true, type = 'directory'})[1])
+    --print(root_dir)
+    return builtin.grep_string({search_dirs={root_dir}})
+end, {})
 
 vim.cmd([[
 "nnoremap <Leader>f :lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({}))<cr>
