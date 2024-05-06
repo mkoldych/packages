@@ -5,6 +5,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 ARG TZ=America/Toronto
 ENV HOME /home/mkoldych
 ENV PATH "$HOME/bin:$PATH"
+ENV PATH "$HOME/d/bin:$PATH"
 
 # Install basic stuff
 RUN apt-get update && \
@@ -33,6 +34,9 @@ RUN apt-get install -y vim
 RUN apt-get install -y sudo
 RUN apt-get install -y xml2rfc
 RUN apt-get install -y ruby-kramdown-rfc2629
+RUN apt-get install -y libjsoncpp-dev
+RUN apt-get install -y libgtest-dev
+RUN apt-get install -y libevent-dev
 
 # Install python modules
 RUN pip3 install -U pynvim
@@ -51,7 +55,8 @@ ENV PATH "$HOME/nvim-linux64/bin:$PATH"
 # install language servers
 RUN npm install -g vim-language-server
 RUN npm install -g pyright
-RUN npm install -g tree-sitter tree-sitter-cli
+RUN npm install -g tree-sitter
+#RUN npm install -g tree-sitter-cli
 RUN npm install -g node
 
 RUN nvim +PlugInstall +qall

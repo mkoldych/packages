@@ -1,7 +1,22 @@
 #!/bin/bash
 
 set -Eeuo pipefail
-set -o xtrace
+
+function err {
+  local stack_offset=1
+  printf 'Failed run. Stacktrace:\n' >&2
+  for stack_id in "${!FUNCNAME[@]}"; do
+    if [[ "$stack_offset" -le "$stack_id" ]]; then
+      local source_file="${BASH_SOURCE[$stack_id]}"
+      local function="${FUNCNAME[$stack_id]}"
+      local line="${BASH_LINENO[$(( stack_id - 1 ))]}"
+      >&2 printf '\t%s:%s:%s\n' "$source_file" "$function" "$line"
+    fi
+  done
+}
+
+trap 'err' ERR
+
 
 #    --pid="host" \
 

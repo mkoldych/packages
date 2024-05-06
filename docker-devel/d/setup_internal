@@ -4,7 +4,7 @@ set -Eeuo pipefail
 
 function err {
   local stack_offset=1
-  printf 'Failed init. Stacktrace:\n' >&2
+  printf 'Failed internal setup. Stacktrace:\n' >&2
   for stack_id in "${!FUNCNAME[@]}"; do
     if [[ "$stack_offset" -le "$stack_id" ]]; then
       local source_file="${BASH_SOURCE[$stack_id]}"
@@ -17,10 +17,15 @@ function err {
 
 trap 'err' ERR
 
-cd
-mkdir -p .config/nvim
-mkdir -p .vim
-cd stow/packages
-stow -t ../../ readline
-stow -t ../../ vim
-stow -t ../../ nvim
+# Setup user and group and allow sudo without password
+groupadd -g ${2} hostgroup
+useradd hostuser -m -u ${1} -g hostgroup -g root -s /bin/bash
+cat << EOF > /etc/sudoers.d/host
+%hostgroup   ALL=(ALL:ALL) NOPASSWD: ALL
+EOF
+
+cd ${HOME}
+sudo chown ${1}:${2} .
+sudo chown -R ${1}:${2} $(ls -a -I .. -I . -I d -I stow)
+#chmod a+rwx /tmp
+#chmod a+rwx /var/log
