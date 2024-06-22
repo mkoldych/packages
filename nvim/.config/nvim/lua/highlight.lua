@@ -1,4 +1,4 @@
-local highlight = {}
+--local highlight = {}
 
 highlight.setup = function ()
     vim.cmd [[
@@ -13,4 +13,4 @@ highlight.setup = function ()
     ]]
 end
 
-return highlight
+--return highlight

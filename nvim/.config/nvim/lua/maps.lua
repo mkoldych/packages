@@ -127,6 +127,10 @@ vim.keymap.set('n', '<leader>fz', builtin.current_buffer_fuzzy_find, {})
 vim.keymap.set('n', '<leader>faa', function()
     local cur_dir = vim.fs.dirname(vim.fn.expand('%:~:.'))
     local root_dir = vim.fs.dirname(vim.fs.find(root_patterns, {path = cur_dir, upward = true, type = 'directory'})[1])
+    if root_dir == nil then
+        print("using current directory")
+        root_dir = cur_dir
+    end
     return telescope.extensions.live_grep_args.live_grep_args({search_dirs={root_dir}})
 end, {})
 
@@ -135,12 +139,19 @@ vim.keymap.set('n', '<leader>fg', function()
     local root_dir = vim.fs.dirname(vim.fs.find(root_patterns, {path = cur_dir, upward = true, type = 'directory'})[1])
     --postfix=' -g ' .. root_dir .. '/** -g !.ccls-cache -g !.git -g !cscope.files -g !tags '
     --prefix='' .. root_dir .. '/**'
+    if root_dir == nil then
+        print("using current directory")
+        root_dir = cur_dir
+    end
     return live_grep_args_shortcuts.grep_word_under_cursor({postfix=' ' .. root_dir})
 end, {})
 vim.keymap.set('n', '<leader>fs', function()
     local cur_dir = vim.fs.dirname(vim.fn.expand('%:~:.'))
     local root_dir = vim.fs.dirname(vim.fs.find(root_patterns, {path = cur_dir, upward = true, type = 'directory'})[1])
-    --print(root_dir)
+    if root_dir == nil then
+        print("using current directory")
+        root_dir = cur_dir
+    end
     return builtin.grep_string({search_dirs={root_dir}})
 end, {})
 

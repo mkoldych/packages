@@ -70,9 +70,8 @@ local plugins = {
   --{ "kyazdani42/nvim-tree.lua" },
 
   -- Colorschemes
-  { "folke/tokyonight.nvim" },
-  { "lunarvim/darkplus.nvim" },
-
+  --{ "folke/tokyonight.nvim" },
+  --{ "lunarvim/darkplus.nvim" },
   -- Cmp 
   { "hrsh7th/nvim-cmp" }, -- The completion plugin
   { "hrsh7th/cmp-buffer" }, -- buffer completions
@@ -123,9 +122,9 @@ local plugins = {
           row = 0,
           col = 1
         },
-        yadm = {
-          enable = false
-        },
+        --yadm = {
+        --  enable = false
+        --},
         on_attach = function(bufnr)
           local gs = package.loaded.gitsigns
 
@@ -280,7 +279,7 @@ local plugins = {
         under_cursor = true,
         -- large_file_cutoff: number of lines at which to use large_file_config
         -- The `under_cursor` option is disabled when this cutoff is hit
-        large_file_cutoff = nil,
+        large_file_cutoff = 10000,
         -- large_file_config: config to use for large files (based on large_file_cutoff).
         -- Supports the same keys passed to .configure
         -- If nil, vim-illuminate will be disabled for large files.

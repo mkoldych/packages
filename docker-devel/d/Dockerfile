@@ -34,9 +34,11 @@ RUN apt-get install -y vim
 RUN apt-get install -y sudo
 RUN apt-get install -y xml2rfc
 RUN apt-get install -y ruby-kramdown-rfc2629
-RUN apt-get install -y libjsoncpp-dev
-RUN apt-get install -y libgtest-dev
+RUN apt-get install -y cmake
+RUN apt-get install -y libjson-c-dev
 RUN apt-get install -y libevent-dev
+RUN apt-get install -y pkg-config
+RUN apt-get install -y libreadline-dev
 
 # Install python modules
 RUN pip3 install -U pynvim

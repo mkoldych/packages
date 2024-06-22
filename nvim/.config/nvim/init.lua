@@ -12,24 +12,23 @@ function nvim_create_augroups(definitions)
   end
 end
 
-local autocmds = {
-  startup = {
-    {"VimEnter",        "*",      [[lua vim.fn['tools#loadCscope']()]]};
-    {"VimEnter",        "*",      [[lua vim.fn['tools#JsoftRestoreLastPos']()]]};
-    {"BufWinEnter",     "*.[ch]", [[lua vim.fn['tools#Line80Error']()]]};
-  }
-}
-nvim_create_augroups(autocmds)
+--local autocmds = {
+--  startup = {
+--    {"VimEnter",        "*",      [[lua vim.fn['tools#loadCscope']()]]};
+--    {"VimEnter",        "*",      [[lua vim.fn['tools#JsoftRestoreLastPos']()]]};
+--    {"BufWinEnter",     "*.[ch]", [[lua vim.fn['tools#Line80Error']()]]};
+--  }
+--}
+--nvim_create_augroups(autocmds)
 
 require('settings')    -- lua/settings.lua
 require('maps')        -- lua/maps.lua
 require('statusline')  -- lua/statusline.lua
 require('colors')      -- lua/colors.lua
---require('cscope')      -- lua/cscope.lua
 require('lsp').setup() -- lua/lsp.lua
 require('ctrlp')
 require('gutentags')
 require('treesitter')
-require('whitespace').setup()
-require('highlight').setup()
+
+--require('whitespace').setup()
 --require('nvimtree')

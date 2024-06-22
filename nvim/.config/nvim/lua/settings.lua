@@ -79,3 +79,8 @@ o.path = "include," .. o.path -- use "gf" to go to fine under cursor
 
 -- NetRW
 g.netrw_liststyle = 3
+
+-- Error Highlighting
+--vim.cmd([[
+--match errorMsg /\s\+$/
+--]])
