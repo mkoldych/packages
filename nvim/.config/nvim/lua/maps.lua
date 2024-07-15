@@ -107,7 +107,7 @@ local builtin = require('telescope.builtin')
 local telescope = require('telescope')
 local live_grep_args_shortcuts = require("telescope-live-grep-args.shortcuts")
 
-local root_patterns = { ".git", ".clang-format", "pyproject.toml", "setup.py" }
+local root_patterns = { ".git", ".clang-format", "pyproject.toml", "setup.py", "tags" }
 
 vim.keymap.set('n', '<leader>ff', builtin.resume, {})
 
@@ -125,8 +125,11 @@ vim.keymap.set('n', '<leader>ft', builtin.tags, {})
 vim.keymap.set('n', '<leader>fz', builtin.current_buffer_fuzzy_find, {})
 
 vim.keymap.set('n', '<leader>faa', function()
-    local cur_dir = vim.fs.dirname(vim.fn.expand('%:~:.'))
-    local root_dir = vim.fs.dirname(vim.fs.find(root_patterns, {path = cur_dir, upward = true, type = 'directory'})[1])
+    --local cur_dir = vim.fs.dirname(vim.fn.expand('%:~:.'))
+    local cur_dir = vim.fs.dirname(vim.api.nvim_buf_get_name(0))
+    --local root_dir = vim.fs.dirname(vim.fs.find(root_patterns, {path = cur_dir, upward = true, type = 'directory'})[1])
+    local root_dir = vim.fs.dirname(vim.fs.find(root_patterns, {path = cur_dir, upward = true})[1])
+    print(root_dir)
     if root_dir == nil then
         print("using current directory")
         root_dir = cur_dir
@@ -135,10 +138,11 @@ vim.keymap.set('n', '<leader>faa', function()
 end, {})
 
 vim.keymap.set('n', '<leader>fg', function()
-    local cur_dir = vim.fs.dirname(vim.fn.expand('%:~:.'))
-    local root_dir = vim.fs.dirname(vim.fs.find(root_patterns, {path = cur_dir, upward = true, type = 'directory'})[1])
+    local cur_dir = vim.fs.dirname(vim.api.nvim_buf_get_name(0))
+    local root_dir = vim.fs.dirname(vim.fs.find(root_patterns, {path = cur_dir, upward = true})[1])
     --postfix=' -g ' .. root_dir .. '/** -g !.ccls-cache -g !.git -g !cscope.files -g !tags '
     --prefix='' .. root_dir .. '/**'
+    print(root_dir)
     if root_dir == nil then
         print("using current directory")
         root_dir = cur_dir
@@ -146,8 +150,9 @@ vim.keymap.set('n', '<leader>fg', function()
     return live_grep_args_shortcuts.grep_word_under_cursor({postfix=' ' .. root_dir})
 end, {})
 vim.keymap.set('n', '<leader>fs', function()
-    local cur_dir = vim.fs.dirname(vim.fn.expand('%:~:.'))
-    local root_dir = vim.fs.dirname(vim.fs.find(root_patterns, {path = cur_dir, upward = true, type = 'directory'})[1])
+    local cur_dir = vim.fs.dirname(vim.api.nvim_buf_get_name(0))
+    local root_dir = vim.fs.dirname(vim.fs.find(root_patterns, {path = cur_dir, upward = true})[1])
+    print(root_dir)
     if root_dir == nil then
         print("using current directory")
         root_dir = cur_dir
