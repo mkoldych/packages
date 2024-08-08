@@ -6,7 +6,7 @@ IS_RUNNING(){
 
 IS_RUNNING && exit
 
-PIPE_DIR="/nobackup/$USER/hostpipe"
+PIPE_DIR="/localdisk/$USER/hostpipe"
 PIPE_IN="$PIPE_DIR/exec_in"
 PIPE_OUT="$PIPE_DIR/exec_out"
 
@@ -19,5 +19,7 @@ fi
 if [ ! -e "$PIPE_OUT" ]; then
     mkfifo "$PIPE_OUT"
 fi
+
+chmod 664 ${PIPE_IN} ${PIPE_OUT}
 
 while true; do eval "$(cat "$PIPE_IN")" &> "$PIPE_OUT"; done

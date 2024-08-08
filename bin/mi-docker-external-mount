@@ -1,0 +1,16 @@
+#!/bin/bash
+
+D=${1}
+INTERNAL_DIR=${2}
+I=0
+while true; do
+    DEST=$(docker inspect ${D} | jq -r ".[0].Mounts[${I}].Destination")
+    SRC=$(docker inspect ${D} | jq -r ".[0].Mounts[${I}].Source")
+    if [[ "${DEST}" == "${INTERNAL_DIR}" ]]; then
+        echo $SRC
+        break
+    elif [[ "${DEST}" == "" ]]; then
+        break
+    fi
+    I=$((I+1))
+done

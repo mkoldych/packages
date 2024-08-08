@@ -1,0 +1,19 @@
+#!/bin/bash
+
+DIR=${1:-$(pwd)}
+DIR=$(realpath ${DIR})
+for D in `docker ps -q`; do
+    SOURCES=$(docker inspect ${D} | jq -r '.[0].Mounts[].Source')
+    FOUND=false
+    for S in $SOURCES; do
+        if [[ "${DIR}" == *"${S}"* ]]; then
+            FOUND=true
+            break
+        fi
+    done
+    if [[ $FOUND == true ]]; then
+        DNAME=$(docker inspect ${D} | jq -r '.[0].Name')
+        DNAME=${DNAME:1}
+        echo $DNAME
+    fi
+done

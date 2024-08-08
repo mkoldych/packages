@@ -236,7 +236,7 @@ local plugins = {
       { "<leader>u", "<cmd>lua require('undotree').toggle()<cr>" },
     },
   },
-  {
+  --[[{
     "RRethy/vim-illuminate",
     config = function()
       require('illuminate').configure({
@@ -294,7 +294,7 @@ local plugins = {
         case_insensitive_regex = false,
       })
     end, 
-  },
+  },]]--
 }
 
 require("lazy").setup(plugins)

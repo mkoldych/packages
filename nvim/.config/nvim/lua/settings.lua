@@ -37,8 +37,8 @@ o.showmatch = true --highlight matching parenthesis.
 o.mouse = 'a'
 --o.ttymouse = 'xterm2'
 
---o.errorfile = 'ljam.err'
---o.makeprg = 'cv'
+o.errorfile = 'ljam.err'
+o.makeprg = 'lyips zebos2'
 
 --[[ START AUTOCOMPLETE ]]--
 o.completeopt = 'menu,menuone,longest'
