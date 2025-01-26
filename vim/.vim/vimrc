@@ -25,6 +25,8 @@ colorscheme elflord
 
 highlight Visual cterm=reverse ctermbg=NONE
 
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""" TAB NAVIGATION """""""""""""""""""""""""""

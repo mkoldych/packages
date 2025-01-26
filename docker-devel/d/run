@@ -20,7 +20,7 @@ trap 'err' ERR
 
 #    --pid="host" \
 
-CONT_NAME="dd"
+CONT_NAME="dd3"
 
 docker stop ${CONT_NAME} || echo "not running, skipping..."
 docker rm ${CONT_NAME} || echo "not running, skipping..."

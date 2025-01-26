@@ -67,6 +67,12 @@ nnoremap <leader>p :cp<cr>
 nnoremap <leader>n :cn<cr>
 ]])
 
+-- START SEARCH SELECTION
+vim.cmd([[
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
+]])
+-- END SEARCH SELECTION
+
 -- START TAGS MAPPINGS --
 Map("n", "<C-]>", "g<C-]>")
 Map("n", "t[", ":tselect<Space>")

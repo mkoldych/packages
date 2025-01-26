@@ -39,11 +39,17 @@ RUN apt-get install -y libjson-c-dev
 RUN apt-get install -y libevent-dev
 RUN apt-get install -y pkg-config
 RUN apt-get install -y libreadline-dev
+RUN apt-get install -y python3-venv
+RUN apt-get install -y python3-pynvim
+RUN apt-get install -y python3-pip
+RUN apt-get install -y python3-setuptools
+RUN apt-get install -y python3-wheel
+RUN apt-get install -y python3-mypy
 
 # Install python modules
-RUN pip3 install -U pynvim
-RUN python3 -m pip install --upgrade pip setuptools wheel
-RUN python3 -m pip install 'python-lsp-server[all]' pylsp-mypy python-lsp-isort python-lsp-black
+#RUN pip3 install -U pynvim
+#RUN python3 -m pip install --upgrade pip setuptools wheel
+#RUN python3 -m pip install 'python-lsp-server[all]' pylsp-mypy python-lsp-isort python-lsp-black
 
 # repo neovim version is very old, don't use it
 #RUN apt-get install -y neovim
