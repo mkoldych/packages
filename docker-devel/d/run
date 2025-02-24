@@ -17,17 +17,16 @@ function err {
 
 trap 'err' ERR
 
+CONT_NAME="dd"
+
+docker rm -f ${CONT_NAME} || echo "not running, skipping..."
 
 #    --pid="host" \
-
-CONT_NAME="dd3"
-
-docker stop ${CONT_NAME} || echo "not running, skipping..."
-docker rm ${CONT_NAME} || echo "not running, skipping..."
-
+#  -u $(id -u):$(id -g) \
 docker run -it \
   --name ${CONT_NAME} \
-  -u $(id -u):$(id -g) \
+  -u $(id -u) \
+  -v /var/run/docker.sock:/var/run/docker.sock \
   --mount type=bind,source=/localdisk,target=/localdisk \
   --mount type=bind,source=/home/${USER}/d,target=/home/${USER}/d,readonly \
   --mount type=bind,source=/home/${USER}/stow,target=/home/${USER}/stow,readonly \

@@ -3,9 +3,9 @@ FROM ubuntu
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG TZ=America/Toronto
-ENV HOME /home/mkoldych
-ENV PATH "$HOME/bin:$PATH"
-ENV PATH "$HOME/d/bin:$PATH"
+ENV HOME=/home/mkoldych
+ENV PATH="$HOME/bin:$PATH"
+ENV PATH="$HOME/d/bin:$PATH"
 
 # Install basic stuff
 RUN apt-get update && \
@@ -17,9 +17,9 @@ RUN apt-get update && \
 
 # Set the locale
 RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US:en
-ENV LC_ALL en_US.UTF-8
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US:en
+ENV LC_ALL=en_US.UTF-8
 
 # Install useful packages
 RUN apt-get update
@@ -45,6 +45,8 @@ RUN apt-get install -y python3-pip
 RUN apt-get install -y python3-setuptools
 RUN apt-get install -y python3-wheel
 RUN apt-get install -y python3-mypy
+RUN apt-get install -y python3-flake8-black
+RUN apt-get install -y docker.io
 
 # Install python modules
 #RUN pip3 install -U pynvim
@@ -56,9 +58,9 @@ RUN apt-get install -y python3-mypy
 
 # Copy a pre-downloaded neovim latest version into the container
 WORKDIR $HOME
-RUN wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
-RUN tar -zxvf nvim-linux64.tar.gz
-ENV PATH "$HOME/nvim-linux64/bin:$PATH"
+RUN wget --no-check-certificate https://github.com/neovim/neovim-releases/releases/download/v0.10.4/nvim-linux-x86_64.tar.gz
+RUN tar -zxvf nvim-linux-x86_64.tar.gz
+ENV PATH="$HOME/nvim-linux-x86_64/bin:$PATH"
 
 # install language servers
 RUN npm install -g vim-language-server

@@ -18,11 +18,17 @@ function err {
 trap 'err' ERR
 
 # Setup user and group and allow sudo without password
+useradd hostuser -m -u ${1} -g root -s /bin/bash
+
 groupadd -g ${2} hostgroup
-useradd hostuser -m -u ${1} -g hostgroup -g root -s /bin/bash
+usermod -a -G hostgroup hostuser
 cat << EOF > /etc/sudoers.d/host
 %hostgroup   ALL=(ALL:ALL) NOPASSWD: ALL
 EOF
+
+# Setup docker group to allow docker without sudo
+groupadd -g $(ls -l /var/run/docker.sock | awk '{print $4}') hostdocker
+usermod -a -G hostdocker hostuser
 
 cd ${HOME}
 sudo chown ${1}:${2} .
