@@ -28,6 +28,7 @@ docker run -it \
   -u $(id -u) \
   -v /var/run/docker.sock:/var/run/docker.sock \
   --mount type=bind,source=/localdisk,target=/localdisk \
+  --mount type=bind,source=/corp/sta,target=/corp/sta \
   --mount type=bind,source=/home/${USER}/d,target=/home/${USER}/d,readonly \
   --mount type=bind,source=/home/${USER}/stow,target=/home/${USER}/stow,readonly \
   --mount type=bind,source=/home/${USER}/.gitconfig,target=/home/${USER}/.gitconfig,readonly \
@@ -35,6 +36,7 @@ docker run -it \
   --mount type=bind,source=/home/${USER}/.zshrc,target=/home/${USER}/.zshrc,readonly \
   --mount type=bind,source=/home/${USER}/.zshrc.zni,target=/home/${USER}/.zshrc.zni,readonly \
   --mount type=bind,source=/home/${USER}/.zsh-settings,target=/home/${USER}/.zsh-settings,readonly \
+  --mount type=bind,source=/home/${USER}/.ssh,target=/home/${USER}/.ssh,readonly \
   -d d
 if [ $? -ne 0 ]
 then

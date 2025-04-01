@@ -4,6 +4,7 @@
   ],
  
   "extraPaths": [
+    "/corp/sta/opt/Python-3.8/lib/python3.8/site-packages",
     "test/l2vpn/modules",
     "../xrut3/modules",
     "ipv4/bgp/test/modules",
@@ -21,6 +22,8 @@
   "reportGeneralTypeIssues" : true,
   "reportMissingImports": true,
   "reportMissingTypeStubs": false,
+  "reportAttributeAccessIssue": false,
+  "reportAssignmentType": false,
  
   "autoFormatStrings" : true,
   "completeFunctionParens" : true,
