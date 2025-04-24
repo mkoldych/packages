@@ -22,31 +22,31 @@ ENV LANGUAGE=en_US:en
 ENV LC_ALL=en_US.UTF-8
 
 # Install useful packages
-RUN apt-get update
-RUN apt-get install -y apt-utils
-RUN apt-get install -y build-essential openssl curl wget
-RUN apt-get install -y libtool unzip git python3-pip stow cscope ccls tmux
-RUN apt-get update
-RUN apt-get install -y libssl-dev
-RUN apt-get install -y npm universal-ctags ripgrep pylint flake8
-RUN apt-get install -y silversearcher-ag ack fd-find
-RUN apt-get install -y vim
-RUN apt-get install -y sudo
-RUN apt-get install -y xml2rfc
-RUN apt-get install -y ruby-kramdown-rfc2629
-RUN apt-get install -y cmake
-RUN apt-get install -y libjson-c-dev
-RUN apt-get install -y libevent-dev
-RUN apt-get install -y pkg-config
-RUN apt-get install -y libreadline-dev
-RUN apt-get install -y python3-venv
-RUN apt-get install -y python3-pynvim
-RUN apt-get install -y python3-pip
-RUN apt-get install -y python3-setuptools
-RUN apt-get install -y python3-wheel
-RUN apt-get install -y python3-mypy
-RUN apt-get install -y python3-flake8-black
-RUN apt-get install -y docker.io
+RUN apt-get update && apt-get install -y \
+    apt-utils \
+    build-essential openssl curl wget \
+    libtool unzip git python3-pip stow cscope ccls tmux \
+    libssl-dev \
+    npm universal-ctags ripgrep pylint flake8 \
+    silversearcher-ag ack fd-find \
+    vim \
+    sudo \
+    xml2rfc \
+    ruby-kramdown-rfc2629 \
+    cmake \
+    libjson-c-dev \
+    libevent-dev \
+    pkg-config \
+    libreadline-dev \
+    python3-venv \
+    python3-pynvim \
+    python3-pip \
+    python3-setuptools \
+    python3-wheel \
+    python3-mypy \
+    python3-flake8-black \
+    jq \
+    docker.io
 
 # Install python modules
 #RUN pip3 install -U pynvim
