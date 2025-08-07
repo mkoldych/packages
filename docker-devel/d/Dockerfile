@@ -25,19 +25,17 @@ ENV LC_ALL=en_US.UTF-8
 RUN apt-get update && apt-get install -y \
     apt-utils \
     build-essential openssl curl wget \
-    libtool unzip git python3-pip stow cscope ccls tmux \
-    libssl-dev \
-    npm universal-ctags ripgrep pylint flake8 \
-    silversearcher-ag ack fd-find \
-    vim \
-    sudo \
-    xml2rfc \
-    ruby-kramdown-rfc2629 \
     cmake \
-    libjson-c-dev \
+    docker.io \
+    jq \
     libevent-dev \
-    pkg-config \
+    libjson-c-dev \
     libreadline-dev \
+    libssl-dev \
+    libtool unzip git python3-pip stow cscope ccls tmux \
+    libtree-sitter-dev \
+    npm universal-ctags ripgrep pylint flake8 \
+    pkg-config \
     python3-venv \
     python3-pynvim \
     python3-pip \
@@ -45,8 +43,11 @@ RUN apt-get update && apt-get install -y \
     python3-wheel \
     python3-mypy \
     python3-flake8-black \
-    jq \
-    docker.io
+    ruby-kramdown-rfc2629 \
+    silversearcher-ag ack fd-find \
+    sudo \
+    vim \
+    xml2rfc
 
 # Install python modules
 #RUN pip3 install -U pynvim

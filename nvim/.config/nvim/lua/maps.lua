@@ -113,7 +113,7 @@ local builtin = require('telescope.builtin')
 local telescope = require('telescope')
 local live_grep_args_shortcuts = require("telescope-live-grep-args.shortcuts")
 
-local root_patterns = { ".git", ".clang-format", "pyproject.toml", "setup.py", "tags" }
+local root_patterns = { ".git", "pyproject.toml", "setup.py", "tags" }
 
 vim.keymap.set('n', '<leader>ff', builtin.resume, {})
 

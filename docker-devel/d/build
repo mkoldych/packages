@@ -25,14 +25,14 @@ echo "HOST_GID=${HOST_GID:=`id -g`}"
 docker stop ${CONT_NAME} || echo "not running, skipping..."
 docker rm ${CONT_NAME} || echo "not running, skipping..."
 
-docker build -t d - < Dockerfile
+docker build -t e - < Dockerfile
 
 docker run -it \
   --name ${CONT_NAME} \
   -v /var/run/docker.sock:/var/run/docker.sock \
-  --mount type=bind,source=/home/mkoldych/d,target=/home/mkoldych/d,readonly \
-  --mount type=bind,source=/home/mkoldych/stow,target=/home/mkoldych/stow,readonly \
-  -d d
+  --mount type=bind,source=/home/mkoldych/d,target=/home/${USER}/d,readonly \
+  --mount type=bind,source=/home/mkoldych/stow,target=/home/${USER}/stow,readonly \
+  -d e
 if [ $? -ne 0 ]
 then
   echo "ERROR: Failed to run docker"
@@ -57,7 +57,7 @@ then
   exit 1
 fi
 
-docker commit ${CONT_NAME} d
+docker commit ${CONT_NAME} e
 
 docker stop ${CONT_NAME}
 docker rm ${CONT_NAME}

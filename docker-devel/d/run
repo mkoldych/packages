@@ -17,7 +17,7 @@ function err {
 
 trap 'err' ERR
 
-CONT_NAME="dd"
+CONT_NAME="ee"
 
 docker rm -f ${CONT_NAME} || echo "not running, skipping..."
 
@@ -27,6 +27,7 @@ docker run -it \
   --name ${CONT_NAME} \
   -u $(id -u) \
   -v /var/run/docker.sock:/var/run/docker.sock \
+  --network host \
   --mount type=bind,source=/localdisk,target=/localdisk \
   --mount type=bind,source=/corp/sta,target=/corp/sta \
   --mount type=bind,source=/home/${USER}/d,target=/home/${USER}/d,readonly \
@@ -37,7 +38,7 @@ docker run -it \
   --mount type=bind,source=/home/${USER}/.zshrc.zni,target=/home/${USER}/.zshrc.zni,readonly \
   --mount type=bind,source=/home/${USER}/.zsh-settings,target=/home/${USER}/.zsh-settings,readonly \
   --mount type=bind,source=/home/${USER}/.ssh,target=/home/${USER}/.ssh,readonly \
-  -d d
+  -d e
 if [ $? -ne 0 ]
 then
   echo "ERROR: Failed to run docker"
