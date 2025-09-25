@@ -36,13 +36,13 @@ RUN apt-get update && apt-get install -y \
     libtree-sitter-dev \
     npm universal-ctags ripgrep pylint flake8 \
     pkg-config \
-    python3-venv \
-    python3-pynvim \
-    python3-pip \
-    python3-setuptools \
-    python3-wheel \
-    python3-mypy \
     python3-flake8-black \
+    python3-mypy \
+    python3-pip \
+    python3-pynvim \
+    python3-setuptools \
+    python3-venv \
+    python3-wheel \
     ruby-kramdown-rfc2629 \
     silversearcher-ag ack fd-find \
     sudo \
@@ -71,5 +71,12 @@ RUN npm install -g tree-sitter
 RUN npm install -g node
 
 RUN nvim +PlugInstall +qall
+
+RUN wget -qO- https://www.mongodb.org/static/pgp/server-8.0.asc | sudo tee /etc/apt/trusted.gpg.d/server-8.0.asc
+RUN echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu noble/mongodb-org/8.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-8.0.list
+RUN echo 'Acquire { https::Verify-Peer false }' | sudo tee -a /etc/apt/apt.conf.d/99verify-peer.conf
+RUN apt-get update && \
+    apt-get install -y mongodb-mongosh
+
 
 #CMD ["/bin/bash"]
