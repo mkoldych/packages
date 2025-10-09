@@ -79,7 +79,7 @@ local plugins = {
   { "saadparwaiz1/cmp_luasnip" }, -- snippet completions
   { "hrsh7th/cmp-nvim-lsp" },
   { "hrsh7th/cmp-nvim-lua" },
-  { "neovim/nvim-lspconfig" },
+  --{ "neovim/nvim-lspconfig" },
 
   { "lewis6991/gitsigns.nvim",
     config = function ()
