@@ -28,7 +28,7 @@ require('colors')      -- lua/colors.lua
 require('lsp').setup() -- lua/lsp.lua
 require('ctrlp')
 require('gutentags')
-require('treesitter')
+--require('treesitter')
 
 --require('whitespace').setup()
 --require('nvimtree')

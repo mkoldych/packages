@@ -146,6 +146,8 @@ end, {})
 vim.keymap.set('n', '<leader>fg', function()
     local cur_dir = vim.fs.dirname(vim.api.nvim_buf_get_name(0))
     local root_dir = vim.fs.dirname(vim.fs.find(root_patterns, {path = cur_dir, upward = true})[1])
+    postfix=' -g \'*.[ch]\''
+    prefix='-g !.ccls-cache -g !.git -g !tags'
     --postfix=' -g ' .. root_dir .. '/** -g !.ccls-cache -g !.git -g !cscope.files -g !tags '
     --prefix='' .. root_dir .. '/**'
     print(root_dir)
@@ -153,10 +155,11 @@ vim.keymap.set('n', '<leader>fg', function()
         print("using current directory")
         root_dir = cur_dir
     end
-    return live_grep_args_shortcuts.grep_word_under_cursor({postfix=' ' .. root_dir})
+    return live_grep_args_shortcuts.grep_word_under_cursor({prefix=prefix, postfix=postfix})
 end, {})
 vim.keymap.set('n', '<leader>fs', function()
     local cur_dir = vim.fs.dirname(vim.api.nvim_buf_get_name(0))
+    print(cur_dir)
     local root_dir = vim.fs.dirname(vim.fs.find(root_patterns, {path = cur_dir, upward = true})[1])
     print(root_dir)
     if root_dir == nil then

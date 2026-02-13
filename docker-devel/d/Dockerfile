@@ -3,9 +3,12 @@ FROM ubuntu
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG TZ=America/Toronto
+ARG GH_TOKEN
 ENV HOME=/home/mkoldych
+ENV GH_TOKEN=${GH_TOKEN}
 ENV PATH="$HOME/bin:$PATH"
 ENV PATH="$HOME/d/bin:$PATH"
+COPY certs/ /usr/local/share/ca-certificates/
 
 # Install basic stuff
 RUN apt-get update && \
@@ -13,7 +16,8 @@ RUN apt-get update && \
   add-apt-repository universe && \
   apt-get update && \
   apt-get -qq -y upgrade && \
-  apt-get -qq -y install locales make zsh
+  apt-get -qq -y install locales make zsh ca-certificates && \
+  update-ca-certificates
 
 # Set the locale
 RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
@@ -69,14 +73,15 @@ RUN npm install -g pyright
 RUN npm install -g tree-sitter
 #RUN npm install -g tree-sitter-cli
 RUN npm install -g node
+RUN npm install -g @github/copilot
 
 RUN nvim +PlugInstall +qall
 
-RUN wget -qO- https://www.mongodb.org/static/pgp/server-8.0.asc | sudo tee /etc/apt/trusted.gpg.d/server-8.0.asc
-RUN echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu noble/mongodb-org/8.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-8.0.list
-RUN echo 'Acquire { https::Verify-Peer false }' | sudo tee -a /etc/apt/apt.conf.d/99verify-peer.conf
-RUN apt-get update && \
-    apt-get install -y mongodb-mongosh
+#RUN wget -qO- https://www.mongodb.org/static/pgp/server-8.0.asc | sudo tee /etc/apt/trusted.gpg.d/server-8.0.asc
+#RUN echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu noble/mongodb-org/8.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-8.0.list
+#RUN echo 'Acquire { https::Verify-Peer false }' | sudo tee -a /etc/apt/apt.conf.d/99verify-peer.conf
+#RUN apt-get update && \
+#    apt-get install -y mongodb-mongosh
 
 
 #CMD ["/bin/bash"]

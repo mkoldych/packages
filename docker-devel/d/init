@@ -17,6 +17,8 @@ function err {
 
 trap 'err' ERR
 
+set -x
+
 cd
 echo insecure >> ${HOME}/.curlrc
 mkdir -p .config/nvim
@@ -25,20 +27,3 @@ cd stow/packages
 stow -t ../../ readline
 stow -t ../../ vim
 stow -t ../../ nvim
-
-#cd /usr/local/src
-#sudo env GIT_SSL_NO_VERIFY=true git clone https://github.com/microsoft/vcpkg
-#sudo ./vcpkg/bootstrap-vcpkg.sh
-#./vcpkg/vcpkg integrate install
-#sudo ./vcpkg/vcpkg install jsoncpp
-
-
-#cd /usr/local/src
-#env GIT_SSL_NO_VERIFY=true sudo git clone https://github.com/google/googletest.git
-#cd googletest
-#sudo mkdir build
-#cd build
-#sudo cmake ..
-#sudo make
-#sudo make install
-

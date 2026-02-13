@@ -16,23 +16,32 @@ function err {
 }
 
 trap 'err' ERR
-
+set -x
 
 CONT_NAME="dd_temp"
+IMAGE_NAME="g"
 echo "HOST_UID=${HOST_UID:=`id -u`}"
 echo "HOST_GID=${HOST_GID:=`id -g`}"
 
 docker stop ${CONT_NAME} || echo "not running, skipping..."
 docker rm ${CONT_NAME} || echo "not running, skipping..."
 
-docker build -t e - < Dockerfile
+#rm -f certs
+#ln -s /localdisk/certs certs
+
+#    --no-cache \
+docker build \
+    --build-arg GH_TOKEN="$(cat /home/$USER/.ssh/PAT_GHCP)" \
+    -t ${IMAGE_NAME} .
+
+#rm -f certs
 
 docker run -it \
   --name ${CONT_NAME} \
   -v /var/run/docker.sock:/var/run/docker.sock \
   --mount type=bind,source=/home/mkoldych/d,target=/home/${USER}/d,readonly \
   --mount type=bind,source=/home/mkoldych/stow,target=/home/${USER}/stow,readonly \
-  -d e
+  -d ${IMAGE_NAME}
 if [ $? -ne 0 ]
 then
   echo "ERROR: Failed to run docker"
@@ -57,7 +66,7 @@ then
   exit 1
 fi
 
-docker commit ${CONT_NAME} e
+docker commit ${CONT_NAME} ${IMAGE_NAME}
 
 docker stop ${CONT_NAME}
 docker rm ${CONT_NAME}

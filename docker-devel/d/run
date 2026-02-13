@@ -17,7 +17,8 @@ function err {
 
 trap 'err' ERR
 
-CONT_NAME="ee"
+CONT_NAME="gg"
+IMAGE_NAME="g"
 
 docker rm -f ${CONT_NAME} || echo "not running, skipping..."
 
@@ -30,15 +31,15 @@ docker run -it \
   --network host \
   --mount type=bind,source=/localdisk,target=/localdisk \
   --mount type=bind,source=/corp/sta,target=/corp/sta \
-  --mount type=bind,source=/home/${USER}/d,target=/home/${USER}/d,readonly \
-  --mount type=bind,source=/home/${USER}/stow,target=/home/${USER}/stow,readonly \
-  --mount type=bind,source=/home/${USER}/.gitconfig,target=/home/${USER}/.gitconfig,readonly \
-  --mount type=bind,source=/home/${USER}/.gitignore,target=/home/${USER}/.gitignore,readonly \
-  --mount type=bind,source=/home/${USER}/.zshrc,target=/home/${USER}/.zshrc,readonly \
-  --mount type=bind,source=/home/${USER}/.zshrc.zni,target=/home/${USER}/.zshrc.zni,readonly \
-  --mount type=bind,source=/home/${USER}/.zsh-settings,target=/home/${USER}/.zsh-settings,readonly \
-  --mount type=bind,source=/home/${USER}/.ssh,target=/home/${USER}/.ssh,readonly \
-  -d e
+  --mount type=bind,source=/home/${USER}/d,target=/home/${USER}/d \
+  --mount type=bind,source=/home/${USER}/stow,target=/home/${USER}/stow \
+  --mount type=bind,source=/home/${USER}/.gitconfig,target=/home/${USER}/.gitconfig \
+  --mount type=bind,source=/home/${USER}/.gitignore,target=/home/${USER}/.gitignore \
+  --mount type=bind,source=/home/${USER}/.zshrc,target=/home/${USER}/.zshrc \
+  --mount type=bind,source=/home/${USER}/.zshrc.zni,target=/home/${USER}/.zshrc.zni \
+  --mount type=bind,source=/home/${USER}/.zsh-settings,target=/home/${USER}/.zsh-settings \
+  --mount type=bind,source=/home/${USER}/.ssh,target=/home/${USER}/.ssh \
+  -d ${IMAGE_NAME}
 if [ $? -ne 0 ]
 then
   echo "ERROR: Failed to run docker"
